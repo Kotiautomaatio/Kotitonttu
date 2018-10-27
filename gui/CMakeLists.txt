@@ -7,11 +7,14 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -pedantic")
 
 find_package(sdl2)
 
-add_executable(koti apps/main.cpp)
+add_executable(koti
+        apps/main.cpp
+        src/FullscreenApplication.cpp)
 
 target_include_directories(koti
         SYSTEM PUBLIC
         ${SDL2_INCLUDE_DIRS})
+
 target_include_directories(koti
         PUBLIC
         include)
