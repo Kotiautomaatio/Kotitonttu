@@ -15,16 +15,22 @@ if [[ ! -e tmp ]]; then
 fi
 cd tmp
 filename=v$version.tar.gz
-wget https://github.com/mosra/magnum/archive/$filename
+if [[ -e "$filename" ]]; then
+  rm "$filename"
+fi
+wget https://github.com/mosra/magnum-plugins/archive/$filename
 tar -xvf $filename
-cd magnum-$version
-mkdir build
+cd magnum-plugins-$version
+if [[ ! -e build ]]; then
+  mkdir build
+fi
 cd build
 cmake .. \
       -DBUILD_STATIC=YES\
       -DCMAKE_INSTALL_PREFIX="$install_path"\
       -DCMAKE_PREFIX_PATH="$install_path"\
-      -DWITH_SDL2APPLICATION=ON
+      -DWITH_FREETYPEFONT=ON\
+      -DBUILD_PLUGINS_STATIC=ON
 
 make -j4
 make install
