@@ -19,14 +19,13 @@ using namespace Math::Literals;
 
 class TriangleExample : public Platform::Application {
  public:
-  explicit TriangleExample(const Arguments &arguments);
+  explicit TriangleExample(const Arguments& arguments);
 
  private:
   void viewportEvent(ViewportEvent& event) override;
   void drawEvent() override;
   void updateText();
   void mouseScrollEvent(MouseScrollEvent& event) override;
-
 
   GL::Mesh _mesh;
   Shaders::VertexColor2D _shader;
@@ -44,7 +43,7 @@ class TriangleExample : public Platform::Application {
       _transformationProjectionDynamicText;
 };
 
-TriangleExample::TriangleExample(const Arguments &arguments) :
+TriangleExample::TriangleExample(const Arguments& arguments) :
     Platform::Application{arguments, Configuration{}.setTitle("Magnum Triangle Example")},
     _cache(Vector2i(2048), Vector2i(512), 22) {
 
@@ -115,16 +114,15 @@ void TriangleExample::drawEvent() {
 
   _mesh.draw(_shader);
 
-
   _text_shader.bindVectorTexture(_cache.texture());
 
   _text_shader
       .setTransformationProjectionMatrix(
-          _projectionRotatingText*_transformationRotatingText)
+          _projectionRotatingText * _transformationRotatingText)
       .setColor(0x2f83cc_rgbf)
       .setOutlineColor(0xdcdcdc_rgbf)
       .setOutlineRange(0.45f, 0.35f)
-      .setSmoothness(0.025f/ _transformationRotatingText.uniformScaling());
+      .setSmoothness(0.025f / _transformationRotatingText.uniformScaling());
   _text.draw(_text_shader);
 
   _text_shader
@@ -138,12 +136,14 @@ void TriangleExample::drawEvent() {
 }
 
 void TriangleExample::mouseScrollEvent(MouseScrollEvent& event) {
-  if(!event.offset().y()) return;
+  if (!event.offset().y()) return;
 
-  if(event.offset().y() > 0)
-    _transformationRotatingText = Matrix3::rotation(1.0_degf)*Matrix3::scaling(Vector2{1.1f})* _transformationRotatingText;
+  if (event.offset().y() > 0)
+    _transformationRotatingText =
+        Matrix3::rotation(1.0_degf) * Matrix3::scaling(Vector2{1.1f}) * _transformationRotatingText;
   else
-    _transformationRotatingText = Matrix3::rotation(-1.0_degf)*Matrix3::scaling(Vector2{1.0f/1.1f})* _transformationRotatingText;
+    _transformationRotatingText =
+        Matrix3::rotation(-1.0_degf) * Matrix3::scaling(Vector2{1.0f / 1.1f}) * _transformationRotatingText;
 
   updateText();
 
@@ -153,7 +153,8 @@ void TriangleExample::mouseScrollEvent(MouseScrollEvent& event) {
 
 void TriangleExample::updateText() {
   _dynamicText->render(Utility::formatString("Rotation: {:.2}°\nScale: {:.2}",
-                                             Float(Deg(Magnum::Math::Complex<float>::fromMatrix(_transformationRotatingText.rotation()).angle())),
+                                             Float(Deg(Magnum::Math::Complex<float>::fromMatrix(
+                                                 _transformationRotatingText.rotation()).angle())),
                                              _transformationRotatingText.uniformScaling()));
 }
 
@@ -163,8 +164,8 @@ void TriangleExample::viewportEvent(ViewportEvent& event) {
   _projectionRotatingText = Matrix3::projection(
       Vector2::xScale(Vector2{windowSize()}.aspectRatio()));
   _transformationProjectionDynamicText =
-      Matrix3::projection(Vector2{windowSize()})*
-          Matrix3::translation(Vector2{windowSize()}*0.5f);
+      Matrix3::projection(Vector2{windowSize()}) *
+          Matrix3::translation(Vector2{windowSize()} * 0.5f);
 }
 
 }
