@@ -34,3 +34,5 @@
 **/.idea/
 **/build/
 **/ext-libs/
+**/cmake-build-debug/
+**/tmp/
