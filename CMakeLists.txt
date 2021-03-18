@@ -1,9 +1,9 @@
 include(flags.cmake)
 cmake_minimum_required(VERSION 3.17)
 if (WIN32)
-    #    set(CMAKE_TOOLCHAIN_FILE ${CMAKE_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake)
-    #    set(VCPKG_TARGET_TRIPLET x64-windows-static)
-    #    message("CMAKE_TOOLCHAIN_FILE = ${CMAKE_TOOLCHAIN_FILE}")
+        set(CMAKE_TOOLCHAIN_FILE ${CMAKE_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake)
+        set(VCPKG_TARGET_TRIPLET x64-windows-static)
+        message("CMAKE_TOOLCHAIN_FILE = ${CMAKE_TOOLCHAIN_FILE}")
 endif ()
 project(Kotitonttu LANGUAGES CXX)
 
@@ -24,7 +24,7 @@ if (UNIX)
     list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/")
 endif ()
 
-
+find_package(freetype CONFIG REQUIRED)
 find_package(Corrade CONFIG REQUIRED Utility)
 find_package(fmt CONFIG REQUIRED)
 find_package(spdlog CONFIG REQUIRED)

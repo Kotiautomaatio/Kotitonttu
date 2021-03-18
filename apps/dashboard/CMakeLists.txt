@@ -18,4 +18,6 @@ target_link_libraries(dashboard
         Magnum::Shaders
         Magnum::Text
         MagnumPlugins::FreeTypeFont
-        MagnumExtras::Ui)
+        MagnumExtras::Ui
+        fmt::fmt
+        freetype)
