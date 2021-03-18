@@ -1,2 +1,1 @@
 set(USE_CORRADE TRUE)
-set(HAVE_)
