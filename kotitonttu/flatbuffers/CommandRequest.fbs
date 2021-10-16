@@ -1,0 +1,14 @@
+namespace Kotitonttu.CommandRequest;
+
+enum LightCommand:byte { NoOp = 0, Toggle = 1, TurnOn = 2, TurnOff = 3, SetToLevel = 4}
+
+enum RoomType:byte { Entrance = 0, LivingRoom = 1, ComputerRoom = 2, Kitchen = 3, BedRoom = 4 }
+
+
+table CommandRequest {
+  switch:LightCommand;
+  room:RoomType;
+  brightness:int;
+}
+
+root_type CommandRequest;

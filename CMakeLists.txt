@@ -34,7 +34,8 @@ find_package(MagnumExtras REQUIRED Ui)
 
 set_directory_properties(PROPERTIES CORRADE_USE_PEDANTIC_FLAGS ON)
 
-include_directories(include)
-add_subdirectory(src)
+include_directories(.)
+
+add_subdirectory(kotitonttu)
 add_subdirectory(apps)
 

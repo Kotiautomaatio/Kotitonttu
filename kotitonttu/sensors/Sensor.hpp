@@ -1,0 +1,6 @@
+#ifndef KOTITONTTU_SENSOR_HPP
+#define KOTITONTTU_SENSOR_HPP
+
+class Sensor {};
+
+#endif // KOTITONTTU_SENSOR_HPP
